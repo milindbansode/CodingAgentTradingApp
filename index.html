@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TradingApp – Daily Investment Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────────────────────── -->
+  <header class="header">
+    <div class="header-logo">
+      <span class="logo-icon">📈</span>
+      <h1>TradingApp</h1>
+    </div>
+    <span class="header-date" id="dateDisplay"></span>
+    <span class="header-tag">Next-Day Picks</span>
+  </header>
+
+  <!-- ── Main ────────────────────────────────────────────────────────────── -->
+  <main class="main">
+
+    <!-- Investment Panel -->
+    <section class="investment-panel" aria-label="Daily investment settings">
+      <div>
+        <div class="panel-label">Daily Investment</div>
+        <div class="budget-display" id="budgetDisplay">₹300.00</div>
+      </div>
+
+      <div class="slider-group">
+        <span class="range-label">₹100</span>
+        <input
+          type="range"
+          id="budgetSlider"
+          min="100"
+          max="500"
+          step="10"
+          value="300"
+          aria-label="Daily investment slider"
+        />
+        <span class="range-label">₹500</span>
+      </div>
+
+      <div class="budget-input-wrap">
+        <span>₹</span>
+        <input
+          type="number"
+          id="budgetInput"
+          class="budget-number"
+          min="100"
+          max="500"
+          step="10"
+          value="300"
+          aria-label="Daily investment amount"
+        />
+      </div>
+
+      <p class="panel-hint">
+        ℹ️ Quantities shown below are calculated based on your daily investment budget.
+      </p>
+    </section>
+
+    <!-- Summary Bar -->
+    <section class="summary-bar" aria-label="Summary statistics">
+      <div class="summary-card">
+        <span class="s-label">Daily Budget</span>
+        <span class="s-value" id="summaryBudget">₹300.00</span>
+      </div>
+      <div class="summary-card">
+        <span class="s-label">Recommendations</span>
+        <span class="s-value" id="summaryCount">–</span>
+      </div>
+      <div class="summary-card">
+        <span class="s-label">Buy Signals</span>
+        <span class="s-value buy-color" id="summaryBuys">–</span>
+      </div>
+      <div class="summary-card">
+        <span class="s-label">Sell Signals</span>
+        <span class="s-value sell-color" id="summarySells">–</span>
+      </div>
+    </section>
+
+    <!-- Filters -->
+    <div class="filters" role="group" aria-label="Recommendation filters">
+      <span class="filter-group-label">Type:</span>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="equity">Equity</button>
+      <button class="filter-btn" data-filter="fno">F&amp;O</button>
+
+      <div class="filter-divider" aria-hidden="true"></div>
+
+      <span class="filter-group-label">Action:</span>
+      <button class="filter-btn active" data-action="all">All</button>
+      <button class="filter-btn" data-action="buy">Buy</button>
+      <button class="filter-btn" data-action="sell">Sell</button>
+    </div>
+
+    <!-- Recommendation Cards -->
+    <section id="recommendations" aria-label="Recommendations"></section>
+
+  </main>
+
+  <!-- ── Footer ──────────────────────────────────────────────────────────── -->
+  <footer class="page-footer">
+    ⚠️ For educational purposes only. Not financial advice. Always consult a SEBI-registered advisor before investing.
+  </footer>
+
+  <!-- ── Why-Modal ────────────────────────────────────────────────────────── -->
+  <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box" tabindex="-1">
+
+      <div class="modal-header">
+        <div class="modal-header-text">
+          <div id="modalTitle"></div>
+          <div id="modalSubtitle"></div>
+        </div>
+        <div class="modal-header-badges">
+          <span id="modalAction" class="modal-action-badge badge"></span>
+        </div>
+        <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      </div>
+
+      <div class="modal-body">
+
+        <div>
+          <div class="modal-section-title">📊 Technical Analysis</div>
+          <div id="modalAnalysis"></div>
+        </div>
+
+        <div>
+          <div class="modal-section-title">💡 Why We Recommend This</div>
+          <div id="modalReasons"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
