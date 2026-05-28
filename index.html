@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trading Research Workspace</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Trading Research Workspace</p>
+          <h1>Track US &amp; India market ideas, plans, and hypothetical P&amp;L</h1>
+          <p class="hero-copy">
+            Use this workspace to organize your own research, paper-trade ideas, and
+            next-day tracking without relying on guaranteed predictions.
+          </p>
+        </div>
+        <div class="warning-card">
+          <h2>Important</h2>
+          <p>
+            This app is for market research and paper-trading records only. It does
+            not provide personalized financial advice or guaranteed returns.
+          </p>
+        </div>
+      </header>
+
+      <nav class="tabs" aria-label="Primary">
+        <button class="tab-button active" data-tab-target="overview">Overview</button>
+        <button class="tab-button" data-tab-target="us-market">US Market</button>
+        <button class="tab-button" data-tab-target="india-market">India Market</button>
+        <button class="tab-button" data-tab-target="reports">Reports</button>
+      </nav>
+
+      <main>
+        <section id="overview" class="tab-panel active">
+          <div class="card-grid three-up">
+            <article class="card metric-card">
+              <h2>Total research slots</h2>
+              <p class="metric" id="total-slot-count">80</p>
+              <p>20 equity + 20 F&amp;O slots for each market.</p>
+            </article>
+            <article class="card metric-card">
+              <h2>Filled ideas</h2>
+              <p class="metric" id="filled-slot-count">0</p>
+              <p>Tracks how many slots contain your saved research.</p>
+            </article>
+            <article class="card metric-card">
+              <h2>Journal P&amp;L</h2>
+              <p class="metric" id="journal-pnl">$0.00</p>
+              <p>Hypothetical performance from your logged paper trades.</p>
+            </article>
+          </div>
+
+          <div class="card-grid">
+            <article class="card">
+              <h2>US Market Workspace</h2>
+              <ul>
+                <li>20 equity idea slots</li>
+                <li>20 futures/options idea slots</li>
+                <li>Short-term notes and catalysts</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h2>India Market Workspace</h2>
+              <ul>
+                <li>20 equity idea slots</li>
+                <li>20 futures/options idea slots</li>
+                <li>Short-term notes and catalysts</li>
+              </ul>
+            </article>
+            <article class="card">
+              <h2>Reports &amp; Record Keeping</h2>
+              <ul>
+                <li>Paper-trade journal</li>
+                <li>Hypothetical next-day P&amp;L</li>
+                <li>CSV export for Excel</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section id="us-market" class="tab-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">US Screen</p>
+              <h2>US Market Research Board</h2>
+            </div>
+            <button class="secondary-button export-research" data-market="us">
+              Export US research CSV
+            </button>
+          </div>
+          <div id="us-market-content"></div>
+        </section>
+
+        <section id="india-market" class="tab-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">India Screen</p>
+              <h2>India Market Research Board</h2>
+            </div>
+            <button class="secondary-button export-research" data-market="india">
+              Export India research CSV
+            </button>
+          </div>
+          <div id="india-market-content"></div>
+        </section>
+
+        <section id="reports" class="tab-panel">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Reports</p>
+              <h2>Paper-trade journal &amp; next-day tracking</h2>
+            </div>
+            <div class="button-row">
+              <button id="export-journal" class="secondary-button">Export journal CSV</button>
+              <button id="clear-storage" class="danger-button">Clear local data</button>
+            </div>
+          </div>
+
+          <div class="card-grid">
+            <article class="card">
+              <h3>Journal summary</h3>
+              <div class="summary-grid">
+                <div>
+                  <span>Total entries</span>
+                  <strong id="journal-count">0</strong>
+                </div>
+                <div>
+                  <span>Total hypothetical P&amp;L</span>
+                  <strong id="journal-total-pnl">$0.00</strong>
+                </div>
+                <div>
+                  <span>Average P&amp;L</span>
+                  <strong id="journal-avg-pnl">$0.00</strong>
+                </div>
+              </div>
+            </article>
+            <article class="card">
+              <h3>How to use</h3>
+              <ol>
+                <li>Capture your own research plans in the market screens.</li>
+                <li>Log completed paper trades below.</li>
+                <li>Review the hypothetical P&amp;L and export CSV for Excel.</li>
+              </ol>
+            </article>
+          </div>
+
+          <article class="card">
+            <h3>Add paper-trade journal entry</h3>
+            <form id="journal-form" class="journal-form">
+              <label>
+                Trade date
+                <input name="tradeDate" type="date" required />
+              </label>
+              <label>
+                Market
+                <select name="market" required>
+                  <option value="US">US</option>
+                  <option value="India">India</option>
+                </select>
+              </label>
+              <label>
+                Type
+                <select name="instrumentType" required>
+                  <option value="Equity">Equity</option>
+                  <option value="Future">Future</option>
+                  <option value="Option">Option</option>
+                </select>
+              </label>
+              <label>
+                Symbol
+                <input name="symbol" type="text" placeholder="AAPL / NIFTY / etc." required />
+              </label>
+              <label>
+                Direction
+                <select name="direction" required>
+                  <option value="Long">Long</option>
+                  <option value="Short">Short</option>
+                </select>
+              </label>
+              <label>
+                Quantity
+                <input name="quantity" type="number" min="0" step="1" required />
+              </label>
+              <label>
+                Entry price
+                <input name="entryPrice" type="number" min="0" step="0.01" required />
+              </label>
+              <label>
+                Exit price
+                <input name="exitPrice" type="number" min="0" step="0.01" required />
+              </label>
+              <label class="form-span-2">
+                Notes
+                <input name="notes" type="text" placeholder="Why you took the paper trade" />
+              </label>
+              <button type="submit" class="primary-button">Save journal entry</button>
+            </form>
+          </article>
+
+          <article class="card">
+            <h3>Saved journal entries</h3>
+            <div class="table-wrap">
+              <table class="journal-table">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Market</th>
+                    <th>Type</th>
+                    <th>Symbol</th>
+                    <th>Direction</th>
+                    <th>Qty</th>
+                    <th>Entry</th>
+                    <th>Exit</th>
+                    <th>P&amp;L</th>
+                    <th>Notes</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="journal-rows"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
